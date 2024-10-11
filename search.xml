@@ -4,16 +4,16 @@
   
     
     <entry>
-      <title>Penetration test</title>
-      <link href="/2024/10/09/Penetration-test/"/>
-      <url>/2024/10/09/Penetration-test/</url>
+      <title>Hack The Box - PermX</title>
+      <link href="/2024/10/11/Hack-The-Box-PermX/"/>
+      <url>/2024/10/11/Hack-The-Box-PermX/</url>
       
-        <content type="html"><![CDATA[<h1 id="Penetration-test-learning"><a href="#Penetration-test-learning" class="headerlink" title="Penetration test learning"></a>Penetration test learning</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="HTB-PermX"><a href="#HTB-PermX" class="headerlink" title="HTB - PermX"></a>HTB - PermX</h1>]]></content>
       
       
       <categories>
           
-          <category> 滲透測試 </category>
+          <category> Penetration test </category>
           
       </categories>
       
@@ -21,6 +21,8 @@
         <tags>
             
             <tag> Pentest </tag>
+            
+            <tag> HTB </tag>
             
         </tags>
       
