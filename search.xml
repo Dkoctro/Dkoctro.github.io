@@ -8,7 +8,7 @@
       <link href="/2024/10/11/Hack-The-Box-PermX/"/>
       <url>/2024/10/11/Hack-The-Box-PermX/</url>
       
-        <content type="html"><![CDATA[<h1 id="HTB-PermX"><a href="#HTB-PermX" class="headerlink" title="HTB - PermX"></a>HTB - PermX</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="Walkthrough"><a href="#Walkthrough" class="headerlink" title="Walkthrough"></a>Walkthrough</h1><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><h2 id="Learn-More"><a href="#Learn-More" class="headerlink" title="Learn More"></a>Learn More</h2>]]></content>
       
       
       <categories>
@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> Pentest </tag>
-            
             <tag> HTB </tag>
+            
+            <tag> Writeup </tag>
             
         </tags>
       
