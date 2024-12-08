@@ -3,10 +3,23 @@
 
 nmap 10.10.11.35 -sV -v 
 
+由圖中可以看到有許多port是開啟的，因此各個嘗試看看
 
 
 
-</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/08/Hack-The-Box-Cicada/">Read more</a></section></article></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a><span class="archive-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+
+首先嘗試LDAP port:
+
+ldapsearch -x -H ldap:&amp;#x2F;&amp;#x2F;10.10.11.35 -D ‘’ -w ‘’ -b “DC&amp;#x3D;cicada,DC&amp;#x3D;htb”
+ldapsearch
+一款用來查詢LDAP伺服器的工具
+通常用來從LDAP目錄中獲取和檢索訊息
+各參數
+-x
+指定使用簡單身份驗證 (Simple Authentication)
+即不使用SASL(Simple Authentication and Security Layer)進行綁定
+SASL是在網路協議中添加身份驗證和數據..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/08/Hack-The-Box-Cicada/">Read more</a></section></article></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a><span class="archive-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
 
 window.addEventListener('resize', $claudia.throttle(function () {
     var images = document.querySelectorAll('.js-img-fadeIn')

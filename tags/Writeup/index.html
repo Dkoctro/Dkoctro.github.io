@@ -3,10 +3,23 @@
 
 nmap 10.10.11.35 -sV -v 
 
+由圖中可以看到有許多port是開啟的，因此各個嘗試看看
 
 
 
-</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/08/Hack-The-Box-Cicada/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/HTB"><i class="tag post-item-tag">HTB</i></a><a href="/tags/Writeup"><i class="tag post-item-tag">Writeup</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/10/11/Hack-The-Box-PermX/">Hack The Box - PermX</a></h2><time class="has-text-grey" datetime="2024-10-11T03:35:02.000Z">2024-10-11</time><p class="is-flex-grow-2 mt-2">前情提要：開始要寫Blog的時候才想起來應該要截圖的，所以這篇不會有任何截圖
+
+
+首先嘗試LDAP port:
+
+ldapsearch -x -H ldap:&amp;#x2F;&amp;#x2F;10.10.11.35 -D ‘’ -w ‘’ -b “DC&amp;#x3D;cicada,DC&amp;#x3D;htb”
+ldapsearch
+一款用來查詢LDAP伺服器的工具
+通常用來從LDAP目錄中獲取和檢索訊息
+各參數
+-x
+指定使用簡單身份驗證 (Simple Authentication)
+即不使用SASL(Simple Authentication and Security Layer)進行綁定
+SASL是在網路協議中添加身份驗證和數據..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/08/Hack-The-Box-Cicada/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/HTB"><i class="tag post-item-tag">HTB</i></a><a href="/tags/Writeup"><i class="tag post-item-tag">Writeup</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/10/11/Hack-The-Box-PermX/">Hack The Box - PermX</a></h2><time class="has-text-grey" datetime="2024-10-11T03:35:02.000Z">2024-10-11</time><p class="is-flex-grow-2 mt-2">前情提要：開始要寫Blog的時候才想起來應該要截圖的，所以這篇不會有任何截圖
 Walkthrough首先透過nmap直接開掃
 
 Normal

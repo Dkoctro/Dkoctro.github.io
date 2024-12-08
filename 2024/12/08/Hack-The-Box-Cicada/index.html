@@ -3,13 +3,508 @@
 
 nmap 10.10.11.35 -sV -v 
 
+由圖中可以看到有許多port是開啟的，因此各個嘗試看看
 
 
 
-"><meta name="generator" content="Hexo 7.3.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Dkoctro's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Hack-The-Box-Cicada</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Walkthrough"><span class="toc-text">Walkthrough</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/HTB"><i class="tag post-item-tag">HTB</i></a><a href="/tags/Writeup"><i class="tag post-item-tag">Writeup</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Hack-The-Box-Cicada</h1><time class="has-text-grey" datetime="2024-12-08T07:57:43.000Z">2024-12-08</time><article class="mt-2 post-content"><h1 id="Walkthrough"><a href="#Walkthrough" class="headerlink" title="Walkthrough"></a>Walkthrough</h1><p>首先一樣透過nmap直接開掃:</p>
+
+
+首先嘗試LDAP port:
+
+ldapsearch -x -H ldap:&amp;#x2F;&amp;#x2F;10.10.11.35 -D ‘’ -w ‘’ -b “DC&amp;#x3D;cicada,DC&amp;#x3D;htb”
+ldapsearch
+一款用來查詢LDAP伺服器的工具
+通常用來從LDAP目錄中獲取和檢索訊息
+各參數
+-x
+指定使用簡單身份驗證 (Simple Authentication)
+即不使用SASL(Simple Authentication and Security Layer)進行綁定
+SASL是在網路協議中添加身份驗證和數據.."><meta name="generator" content="Hexo 7.3.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Dkoctro's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Hack-The-Box-Cicada</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Walkthrough"><span class="toc-text">Walkthrough</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learn-More"><span class="toc-text">Learn More</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/HTB"><i class="tag post-item-tag">HTB</i></a><a href="/tags/Writeup"><i class="tag post-item-tag">Writeup</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Hack-The-Box-Cicada</h1><time class="has-text-grey" datetime="2024-12-08T07:57:43.000Z">2024-12-08</time><article class="mt-2 post-content"><h1 id="Walkthrough"><a href="#Walkthrough" class="headerlink" title="Walkthrough"></a>Walkthrough</h1><p>首先一樣透過nmap直接開掃:</p>
 <ul>
 <li>nmap 10.10.11.35 -sV -v <ul>
-<li><img src="/../images/Cicada/nmap.png" alt="nmap result"></li>
+<li><img src="/../images/Cicada/nmap.png" alt="nmap result"><ul>
+<li>由圖中可以看到有許多port是開啟的，因此各個嘗試看看</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>首先嘗試LDAP port:</p>
+<ul>
+<li>ldapsearch -x -H ldap:&#x2F;&#x2F;10.10.11.35 -D ‘’ -w ‘’ -b “DC&#x3D;cicada,DC&#x3D;htb”<ul>
+<li>ldapsearch<ul>
+<li>一款用來查詢LDAP伺服器的工具</li>
+<li>通常用來從LDAP目錄中獲取和檢索訊息</li>
+<li>各參數<ul>
+<li>-x<ul>
+<li>指定使用簡單身份驗證 (Simple Authentication)<ul>
+<li>即不使用SASL(Simple Authentication and Security Layer)進行綁定<ul>
+<li>SASL是在網路協議中添加身份驗證和數據安全性</li>
+<li>並非一種具體的身份驗證機制，而是一種通用框架，支持多種身份驗證方法</li>
+<li>核心功能<ul>
+<li>身份驗證</li>
+<li>數據完整性</li>
+<li>數據加密</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>最常使用的LDAP查詢方式，特別在匿名訪問</li>
+</ul>
+</li>
+<li>-H<ul>
+<li>用來指定LDAP伺服器的位址與協議</li>
+</ul>
+</li>
+<li>-D<ul>
+<li>用來指定綁定的DN(Distinguished Name)，即查詢使用的帳戶名稱</li>
+<li>空的表示匿名綁定，不使用任何憑證<ul>
+<li>通常只有在LDAP伺服器允許匿名訪問時才有效</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>-w<ul>
+<li>用來指定密碼，與-D中指定的用戶一起使用</li>
+<li>空的表示沒有密碼，與匿名綁定配合使用，即無須身份驗證</li>
+</ul>
+</li>
+<li>-b<ul>
+<li>用來指定搜尋基底(Base DN)，即搜索的起點或範圍<ul>
+<li>Base DN記載LDAP目錄中的特定位置，作為所有操作的根節點</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/ldapsearch.png" alt="ldap search"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然LDAP無法下手，那就換一個地方： 嘗試爆破攻擊SMB port(445 port)</p>
+<ul>
+<li>Crackmapexec<ul>
+<li>一款用於滲透測試和紅隊操作的自動化工具</li>
+<li>用於快速而有效地執行各種滲透測試和攻擊，特別是針對Windows環境</li>
+<li>攻擊command<ul>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘’ -p ‘’ –shares<ul>
+<li>參數<ul>
+<li>smb<ul>
+<li>指定SMB協議</li>
+</ul>
+</li>
+<li>-d<ul>
+<li>指定網域</li>
+</ul>
+</li>
+<li>-u<ul>
+<li>指定用戶名</li>
+<li>空的表示沒有，為匿名認證的一部分<ul>
+<li>嘗試不使用具體帳戶的情況下連接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>-p<ul>
+<li>指定密碼</li>
+<li>空的表示沒有，與用戶名結合用於匿名連接</li>
+</ul>
+</li>
+<li>–shares<ul>
+<li>指示crackmapexec尋找並列出目標系統上的共享資源(shares)<ul>
+<li>會嘗試枚舉所有可見共享資料夾，並返回其訪問狀態</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec.png" alt="crackmapexec result"><ul>
+<li>可以看到在匿名情況下無法存取任何資訊</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘’ -p ‘’ –users<ul>
+<li>參數<ul>
+<li>–users<ul>
+<li>尋找並列出用戶帳戶<ul>
+<li>前提是目前的權限得以查詢此訊息</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec1.png" alt="crackmapexec result"><ul>
+<li>在匿名情況下，不允許被查詢</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘guest’ -p ‘’ –shares<ul>
+<li>將user指定為guest</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec2.png" alt="crackmapexec result"><ul>
+<li>可以看到HR有READ權限</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然發現在guest權限時可以知道HR資料夾有讀取權限，那就連線到該主機去存取：SAMBA</p>
+<ul>
+<li>smbclient<ul>
+<li>一個類似FTP客戶端的工具</li>
+<li>用來訪問和管理SMB共享資料夾<ul>
+<li>可以瀏覽、下載和上傳資料</li>
+</ul>
+</li>
+<li>訪問command<ul>
+<li>smbclient -U guest\10.10.11.35\HR<ul>
+<li>參數<ul>
+<li>-U<ul>
+<li>指定用戶名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/smbclient.png" alt="smbclient result"><ul>
+<li>不用密碼即可登入，因此再按一下enter即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>當透過SMB成功連線後，就可以存取在HR資料夾中一個名為”Notice from HR.txt”的資料</p>
+<ul>
+<li><img src="/../images/Cicada/smbclient1.png" alt="File in Samba"><ul>
+<li>使用get指令將資料下載<ul>
+<li><img src="/../images/Cicada/smbclient3.png" alt="Download file in Samba"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>該檔案裡的資料<ul>
+<li><img src="/../images/Cicada/smbclient4.png" alt="Notice from HR.txt"><ul>
+<li>可以從中找到預設密碼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>現在有了密碼，但還沒有帳號：一樣透過crackmapexec去找</p>
+<ul>
+<li>剛剛知道guest可以存取share資料夾，那用來找帳號試試看<ul>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘guest’ -p ‘’ –users<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec3.png" alt="crackmapexec result"><ul>
+<li>可以發現在guest情況下沒辦法直接把users全部列出來</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘guest’ -p ‘’ –rid-brute<ul>
+<li>參數<ul>
+<li>–rid-brute<ul>
+<li>用來進行RID暴力枚舉的<ul>
+<li>RID(Relative Identifier)是在Windows系統中用於標識安全標識符(SID)的最後一部分</li>
+</ul>
+</li>
+<li>可以從目標系統中枚舉用戶和訊息，一種基於SMB協議的訊息收集技術</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec4.png" alt="crackmapexec result"><ul>
+<li>從中我們得到的可以用來爆破的user list(需要整理一下，裡面不只user的資訊)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然有帳號可以爆破，那一樣用crackmapexec去做</p>
+<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/crackmapexec5.png" alt="crackmapexec result"><ul>
+<li>最終找到michael.wrightson是使用該預設密碼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>現在有了一組帳號密碼後，就可以去偵查Samba裡面的東西了：enum4linux</p>
+<ul>
+<li>enum4linux<ul>
+<li>針對Samba服務掃描的工具</li>
+<li>提供使用者、群組、印表機等清單<ul>
+<li>透過獲取資訊，有助於找出系統中可利用於進行滲透測試的資源</li>
+</ul>
+</li>
+<li>掃描command<ul>
+<li>enum4linux -a -u ‘michael.wrightson’ -p ‘Cicada$M6Corpb*@Lp#nZp!8’ 10.10.11.35<ul>
+<li>參數<ul>
+<li>-a<ul>
+<li>會將所有主要枚舉的操作都做過一遍<ul>
+<li>-U -S -G -P -r -o -n -i</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>-u<ul>
+<li>指定user</li>
+</ul>
+</li>
+<li>-p<ul>
+<li>指定密碼</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/enum4linux.png" alt="enum4linux result"><ul>
+<li>當中找到了david.orelious的密碼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然有新的credentials，那就繼續去找資料</p>
+<ul>
+<li>crackmapexec smb 10.10.11.35 -d cicada.htb -u ‘david.orelious’ -p ‘aRt$Lp#7t*VQ!3’ –shares<ul>
+<li><img src="/../images/Cicada/crackmapexec6.png" alt="crackmapexec result"><ul>
+<li>可以發現在david.orelious的權限下DEV資料夾是可讀的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>找到新的share資料夾就一樣進去看有什麼</p>
+<ul>
+<li>smbclient -U david.orelious \10.10.11.35\DEV<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/smbclient5.png" alt="smbclient result"><ul>
+<li>可以看到有個Powershell的script(Backup_script.ps1)，一樣下載下來</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Backup_script.ps1<ul>
+<li><img src="/../images/Cicada/ps1.png" alt="Backup_script.ps1"><ul>
+<li>從中可以找到emily.oscars的credential</li>
+<li>這次拿到的新credential一樣去掃描，不過沒有拿到什麼東西，因此嘗試登入看看</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>登入帳號</p>
+<ul>
+<li>evil-winrm<ul>
+<li>一款專門針對Windows遠程管理(Windows Remote Management, WinRM)的滲透測試工具<ul>
+<li>可以用在任何有開啟WinRM功能的Microsoft Windows Servers上</li>
+</ul>
+</li>
+<li>利用WinRM協議，讓攻擊者在目標系統上執行命令、上傳&#x2F;下載文件等操作<ul>
+<li>WinRM<ul>
+<li>基於WS-Management(Web Services for Management)協議的實現，通過HTTP(預設port： 5985)或HTTPS(預設port: 5986)進行通訊</li>
+<li>提供遠程命令執行的功能，允許管理員從遠端執行PowerShell腳本、查詢系統訊息、操作服務等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>攻擊command<ul>
+<li>evil-winrm -u ‘emily.oscars’ -p ‘Q!3@Lp#M6b7tVt’ -i 10.10.11.35<ul>
+<li>參數<ul>
+<li>-u<ul>
+<li>指定user</li>
+</ul>
+</li>
+<li>-p<ul>
+<li>指定密碼</li>
+</ul>
+</li>
+<li>-i<ul>
+<li>指定IP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/evil-winrm.png" alt="evil-winrm result"><ul>
+<li>成功登入</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>成功登入後就可以在桌面發現user flag</p>
+<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/evil-winrm1.png" alt="evil-winrm result"></li>
+</ul>
+</li>
+</ul>
+<p>再來就是提權的部份<br>首先先透過指令知道目前user所擁有的安全性權限</p>
+<ul>
+<li>whoami &#x2F;priv<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/evil-winrm2.png" alt="evil-winrm result"><ul>
+<li>可以看到目前user的權限中是可以透過SeBackupPrivilege提權<ul>
+<li>SeBackupPrivilege讓user可以查看所有在系統中的檔案</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然有權限可以查看所有檔案，那就dump重要檔案</p>
+<ul>
+<li>reg save<ul>
+<li>用來將Windows系統中的登錄檔保存成一個檔案<ul>
+<li>該檔案可以用來備份、還原、分析等用途</li>
+</ul>
+</li>
+<li>Dump出SAM與SYSTEM<ul>
+<li>SAM<ul>
+<li>Security Account Management - 安全帳戶管理器</li>
+<li>此組態檔儲存電腦所有使用者密碼雜湊<ul>
+<li>對攻擊者來說，這些資訊可用來存取特定的使用者帳號，進而獲得更高的存取權限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SYSTEM<ul>
+<li>當中包含系統配置和控制訊息<ul>
+<li>加密用戶密碼的hash金鑰</li>
+<li>系統啟動的配置</li>
+<li>系統服務和驅動程式的加載設置</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result<ul>
+<li><img src="/../images/Cicada/evil-winrm3.png" alt="evil-winrm result"></li>
+<li><img src="/../images/Cicada/evil-winrm4.png" alt="evil-winrm result"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dump完之後下載到本地端進行分析<ul>
+<li><img src="/../images/Cicada/evil-winrm5.png" alt="evil-winrm result"></li>
+<li><img src="/../images/Cicada/evil-winrm6.png" alt="evil-winrm result"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>將SAM、SYSTEM中的credentials dump出來：impacket-secretsdump</p>
+<ul>
+<li>impacket-secretsdump<ul>
+<li>可以將SAM、LSA密碼，及NTLM的雜湊值、明文密碼等重要資訊dump出來</li>
+<li>Dump command<ul>
+<li>impacket-secretsdump -sam sam -system system LOCAL<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/impacket-secretsdump.png" alt="impacket-secretsdump result"><ul>
+<li>得到Administrator的密碼hash值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>最後再透過evil-winrm進行登入</p>
+<ul>
+<li>Login command<ul>
+<li>evil-winrm -u administrator -H 2b87e7c93a3e8a0ea4a581937016f341 -i 10.10.11.35<ul>
+<li>Result<ul>
+<li><img src="/../images/Cicada/evil-winrm7.png" alt="evil-winrm result"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>最終就能在桌面找到flag<br>成功完成這台靶機！</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>Other’s writeups</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://anans1.medium.com/htb-cicada-03e13dbab57d">https://anans1.medium.com/htb-cicada-03e13dbab57d</a></li>
+</ul>
+<h2 id="Learn-More"><a href="#Learn-More" class="headerlink" title="Learn More"></a>Learn More</h2><ul>
+<li>SAM(Security Account Management)<ul>
+<li><a target="_blank" rel="noopener" href="https://teamt5.org/tw/posts/understanding-windows-registry-sam/">https://teamt5.org/tw/posts/understanding-windows-registry-sam/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.techtarget.com/searchenterprisedesktop/definition/Security-Accounts-Manager">https://www.techtarget.com/searchenterprisedesktop/definition/Security-Accounts-Manager</a></li>
+</ul>
+</li>
+<li>Samba_client<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ichiayi.com/tech/samba_client">https://www.ichiayi.com/tech/samba_client</a></li>
+</ul>
+</li>
+<li>ldapsearch<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ibm.com/docs/zh-tw/power10?topic=commands-ldapsearch-command">https://www.ibm.com/docs/zh-tw/power10?topic=commands-ldapsearch-command</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.jason.tools/2022/02/ldapsearch-cli.html">https://blog.jason.tools/2022/02/ldapsearch-cli.html</a></li>
+</ul>
+</li>
+<li>Evil-winrm<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Hackplayers/evil-winrm">https://github.com/Hackplayers/evil-winrm</a></li>
 </ul>
 </li>
 </ul>
