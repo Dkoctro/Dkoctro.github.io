@@ -21,7 +21,7 @@
       <link href="/2024/12/08/Hack-The-Box-Cicada/"/>
       <url>/2024/12/08/Hack-The-Box-Cicada/</url>
       
-        <content type="html"><![CDATA[<h1 id="Walkthrough"><a href="#Walkthrough" class="headerlink" title="Walkthrough"></a>Walkthrough</h1><p>首先一樣透過nmap直接開掃:</p><ul><li>nmap 10.10.11.35 -sV -v <ul><li><img src="/../../images/Cicada/nmap%20-sv.png" alt="nmap result"></li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="Walkthrough"><a href="#Walkthrough" class="headerlink" title="Walkthrough"></a>Walkthrough</h1><p>首先一樣透過nmap直接開掃:</p><ul><li>nmap 10.10.11.35 -sV -v <ul><li><img src="/../images/Cicada/nmap.png" alt="nmap result"></li></ul></li></ul>]]></content>
       
       
       <categories>
